@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('service_delete', {'id': service.id}) }}" onsubmit="return confirm('Voulez vous vraiment supprimer cette élément ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ service.id) }}">
+    <button class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">delete</i></button>
+</form>

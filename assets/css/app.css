@@ -1,0 +1,43 @@
+body {
+    background-color: #ebebeb;
+}
+
+.w3-container{
+    margin: auto;
+    padding: 10px;
+    background: #313131;
+}
+
+.user-view{
+    padding: 300px 0 0 !important;
+}
+#dropdown1{
+    top: 64px !important;
+}
+#dropdown2{
+    left: 130px !important;
+}
+.carousel{
+    height: 500px !important;
+    width: auto !important;
+}
+
+table{
+    width: 80%;
+    margin: auto;
+    background-color: #ffffff;
+}
+
+th {
+    background-color: #66afa6;
+    color: white;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}

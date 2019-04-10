@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <h1>Create new Formule</h1>
+
+    <div class="container">
+        {{ include('formule/_form.html.twig') }}
+        <a href="{{ path('formule_index') }}">back to list</a>
+    </div>
+
+{% endblock %}
