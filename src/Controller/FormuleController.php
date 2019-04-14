@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Formule;
 use App\Form\FormuleType;
 use App\Repository\FormuleRepository;
+use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,17 @@ class FormuleController extends AbstractController
     {
         return $this->render('formule/index.html.twig', [
             'formules' => $formuleRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/userSpace", name="user_space", methods={"GET"})
+     */
+    public function userSpace(FormuleRepository $formuleRepository, ServiceRepository $serviceRepository): Response
+    {
+        return $this->render('userSpace/index.html.twig', [
+            'formules' => $formuleRepository->findAll(),
+            'services' => $serviceRepository->findAll(),
         ]);
     }
 

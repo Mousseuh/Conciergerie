@@ -2,10 +2,27 @@ body {
     background-color: #ebebeb;
 }
 
+.containers{
+    text-align: center;
+}
+
+.btn-success{
+    background-color: #00bf00;
+}
+
 .w3-container{
-    margin: auto;
-    padding: 10px;
-    background: #313131;
+    display: inline-block;
+    width: 42%;
+    background: #5e9191;
+    border-radius: 10px;
+    margin: 0 0 15px 15px;
+}
+
+.show-user{
+    text-align: center;
+    background: #ffffff;
+    border-radius: 5px;
+    border: 2px solid black;
 }
 
 .user-view{

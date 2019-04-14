@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <h1>Découvrez les formules disponibles</h1>
+
+
+    {% for formule in formules %}
+    <div class="containers">
+        <div class="w3-container">
+                <h3>{{ formule.name }}</h3>
+                <a href="{{ path('formule_show', {'id': formule.id}) }}">+ D'infos</a>
+        </div>
+    </div>
+    {% endfor %}
+
+    <h1>Ou les services en individuels</h1>
+
+    {% for service in services %}
+        <div class="containers">
+            <div class="w3-container">
+                <h3>{{ service.name }}</h3>
+                <a href="{{ path('service_show', {'id': service.id}) }}">+ D'infos</a>
+            </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
