@@ -10,10 +10,11 @@ class UserTest extends TestCase
 {
     public function testValidationFail()
     {
+
         $user = new User();
         $user->setEmail('This is not an email');
 
-        $violations = $this->validator->validate($user);
+        $violations = $validator->validate($user);
 
         $this->assertCount(1, $violations);
     }
