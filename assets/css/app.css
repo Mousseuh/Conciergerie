@@ -10,6 +10,12 @@ body {
     background-color: #00bf00;
 }
 
+.new{
+    border-radius: 5px;
+    background-color: #001342;
+    color: #ffffff;
+}
+
 .w3-container{
     display: inline-block;
     width: 42%;

@@ -6,8 +6,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -15,8 +15,8 @@
             <tr>
                 <td>{{ service.name }}</td>
                 <td>
-                    <a href="{{ path('service_show', {'id': service.id}) }}">show</a>
-                    <a href="{{ path('service_edit', {'id': service.id}) }}">edit</a>
+                    <a href="{{ path('service_edit', {'id': service.id}) }}"><i class="material-icons">create</i></a>
+                    {{ include('service/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
@@ -27,6 +27,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('service_new') }}">Create new</a>
+    <a href="{{ path('service_new') }}"><i class="new material-icons">add</i></a>
     <a href="{{ path('service_formule') }}">Ajout d'un service à une formule</a>
 {% endblock %}

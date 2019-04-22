@@ -113,6 +113,7 @@ class ServiceController extends AbstractController
         }
 
         return $this->render('service/service_formule.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
