@@ -11,7 +11,7 @@
                     <div class="containers">
                         <div class="w3-container">
                             <h3>{{ formule.name }}</h3>
-                            <a href="{{ path('formule_show', {'id': formule.id}) }}">+ D'infos</a>
+                            <a href="{{ path('formule_show', {'id': formule.id}) }}"><i class="info material-icons">info_outline</i></a>
                         </div>
                     </div>
                 {% endfor %}
@@ -29,7 +29,7 @@
                     <div class="containers">
                         <div class="w3-container">
                             <h3>{{ service.name }}</h3>
-                            <a href="{{ path('service_show', {'id': service.id}) }}">+ D'infos</a>
+                            <a href="{{ path('service_show', {'id': service.id}) }}"><i class="info material-icons">info_outline</i></a>
                         </div>
                     </div>
                 {% endfor %}
