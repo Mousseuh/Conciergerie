@@ -9,7 +9,11 @@ class FormuleControllerTest extends WebTestCase
 {
     public function testIndex()
     {
-        $client = static::createClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'superadmin1',
+        ]);
+
 
         $crawler = $client->request('GET', '/formule/');
 
@@ -19,7 +23,10 @@ class FormuleControllerTest extends WebTestCase
 
     public function testUserSpace()
     {
-        $client = static::createClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'superadmin1',
+        ]);
 
         $crawler = $client->request('GET', '/userSpace');
 
@@ -29,7 +36,10 @@ class FormuleControllerTest extends WebTestCase
 
     public function testNew()
     {
-        $client = static::createClient();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'superadmin1',
+        ]);
 
         $crawler = $client->request('GET', '/formule/new');
 

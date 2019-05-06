@@ -26,12 +26,12 @@ class Service
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Users", mappedBy="services")
+     * @ORM\ManyToMany(targetEntity="UserService", mappedBy="services")
      */
     private $users;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Formules", mappedBy="services")
+     * @ORM\ManyToMany(targetEntity="FormuleService", mappedBy="services")
      */
     private $formules;
 
@@ -64,14 +64,14 @@ class Service
     }
 
     /**
-     * @return Collection|Users[]
+     * @return Collection|UserService[]
      */
     public function getUsers(): Collection
     {
         return $this->users;
     }
 
-    public function addUser(Users $user): self
+    public function addUser(UserService $user): self
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
@@ -81,7 +81,7 @@ class Service
         return $this;
     }
 
-    public function removeUser(Users $user): self
+    public function removeUser(UserService $user): self
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
@@ -92,14 +92,14 @@ class Service
     }
 
     /**
-     * @return Collection|Formules[]
+     * @return Collection|FormuleService[]
      */
     public function getFormules(): Collection
     {
         return $this->formules;
     }
 
-    public function addFormule(Formules $formule): self
+    public function addFormule(FormuleService $formule): self
     {
         if (!$this->formules->contains($formule)) {
             $this->formules[] = $formule;
@@ -109,7 +109,7 @@ class Service
         return $this;
     }
 
-    public function removeFormule(Formules $formule): self
+    public function removeFormule(FormuleService $formule): self
     {
         if ($this->formules->contains($formule)) {
             $this->formules->removeElement($formule);
