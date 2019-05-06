@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class Users
+class UserFormule
 {
     /**
      * @ORM\Id()
@@ -19,13 +19,13 @@ class Users
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formule", inversedBy="users")
      */
-    private $services;
+    private $formules;
 
     public function __construct()
     {
-        $this->services = new ArrayCollection();
+        $this->formules= new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -34,26 +34,26 @@ class Users
     }
 
     /**
-     * @return Collection|Service[]
+     * @return Collection|Formule[]
      */
-    public function getServices(): Collection
+    public function getFormules(): Collection
     {
-        return $this->services;
+        return $this->formules;
     }
 
-    public function addService(Service $service): self
+    public function addFormule(Formule $formule): self
     {
-        if (!$this->services->contains($service)) {
-            $this->services[] = $service;
+        if (!$this->formules->contains($formule)) {
+            $this->formules[] = $formule;
         }
 
         return $this;
     }
 
-    public function removeService(Service $service): self
+    public function removeFormule(Formule $formule): self
     {
-        if ($this->services->contains($service)) {
-            $this->services->removeElement($service);
+        if ($this->formules->contains($formule)) {
+            $this->formules->removeElement($formule);
         }
 
         return $this;
