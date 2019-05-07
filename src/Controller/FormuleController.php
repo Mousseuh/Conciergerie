@@ -18,6 +18,10 @@ class FormuleController extends AbstractController
 {
     /**
      * @Route("/", name="formule_index", methods={"GET"})
+     *
+     * @param FormuleRepository $formuleRepository
+     *
+     * @return Response
      */
     public function index(FormuleRepository $formuleRepository): Response
     {
@@ -28,6 +32,11 @@ class FormuleController extends AbstractController
 
     /**
      * @Route("/userSpace", name="user_space", methods={"GET"})
+     *
+     * @param FormuleRepository $formuleRepository
+     * @param ServiceRepository $serviceRepository
+     *
+     * @return Response
      */
     public function userSpace(FormuleRepository $formuleRepository, ServiceRepository $serviceRepository): Response
     {
@@ -39,6 +48,10 @@ class FormuleController extends AbstractController
 
     /**
      * @Route("/new", name="formule_new", methods={"GET","POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -62,6 +75,10 @@ class FormuleController extends AbstractController
 
     /**
      * @Route("/{id}", name="formule_show", methods={"GET"})
+     *
+     * @param Formule $formule
+     *
+     * @return Response
      */
     public function show(Formule $formule): Response
     {
@@ -72,6 +89,11 @@ class FormuleController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="formule_edit", methods={"GET","POST"})
+     *
+     * @param Request $request
+     * @param Formule $formule
+     *
+     * @return Response
      */
     public function edit(Request $request, Formule $formule): Response
     {
@@ -94,6 +116,11 @@ class FormuleController extends AbstractController
 
     /**
      * @Route("/{id}", name="formule_delete", methods={"DELETE"})
+     *
+     * @param Request $request
+     * @param Formule $formule
+     *
+     * @return Response
      */
     public function delete(Request $request, Formule $formule): Response
     {
