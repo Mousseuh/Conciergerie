@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Service;
-use App\Form\ServiceFormuleType;
+use App\Form\FormuleServiceType;
 use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,8 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ServiceController extends AbstractController
 {
-
-
     /**
      * @Route("/", name="service_index", methods={"GET"})
      */
@@ -102,7 +100,7 @@ class ServiceController extends AbstractController
      */
     public function addServiceInFormule(Request $request)
     {
-        $form = $this->createForm(ServiceFormuleType::class);
+        $form = $this->createForm(FormuleServiceType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

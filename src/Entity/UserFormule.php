@@ -25,7 +25,7 @@ class UserFormule
 
     public function __construct()
     {
-        $this->formules= new ArrayCollection();
+        $this->formules = new ArrayCollection();
     }
 
     public function getId(): ?int

@@ -101,7 +101,7 @@ class User implements UserInterface
     }
 
     /**
-     * Retourne les rôles de l'user
+     * Retourne les rôles de l'user.
      */
     public function getRoles(): array
     {
