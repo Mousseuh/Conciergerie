@@ -29,6 +29,11 @@ class Formule
     private $users;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="users")
+     */
+    private $services;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $description;

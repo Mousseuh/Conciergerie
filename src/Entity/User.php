@@ -54,9 +54,15 @@ class User implements UserInterface
      */
     private $formules;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="users")
+     */
+    private $services;
+
     public function __construct()
     {
         $this->formules = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +155,32 @@ class User implements UserInterface
     {
         if ($this->formules->contains($formule)) {
             $this->formules->removeElement($formule);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        if ($this->services->contains($service)) {
+            $this->services->removeElement($service);
         }
 
         return $this;
