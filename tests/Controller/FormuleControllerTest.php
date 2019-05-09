@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class FormuleControllerTest extends WebTestCase
 {
+
+    /**
+     * test redirection on the Formule admin page
+     */
     public function testIndex()
     {
         $client = static::createClient([], [
@@ -21,7 +25,10 @@ class FormuleControllerTest extends WebTestCase
         $this->assertContains('Formule index', $crawler->filter('h1')->text());
     }
 
-    public function testUserSpace()
+    /**
+     * test redirection on the Formule and Service choice page
+     */
+    public function testFomuleService()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'admin',
@@ -34,6 +41,9 @@ class FormuleControllerTest extends WebTestCase
         $this->assertContains('Découvrez les formules disponibles', $crawler->filter('h1')->text());
     }
 
+    /**
+     * test redirection on the Formule creation page
+     */
     public function testNew()
     {
         $client = static::createClient([], [

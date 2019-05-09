@@ -13,6 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ServiceControllerTest extends WebTestCase
 {
+
+    /**
+     * test redirection on the Service admin page
+     */
     public function testIndex()
     {
         $client = static::createClient([], [
@@ -26,6 +30,9 @@ class ServiceControllerTest extends WebTestCase
         $this->assertContains('Service index', $crawler->filter('h1')->text());
     }
 
+    /**
+     * test redirection on the Service creation page
+     */
     public function testNew()
     {
         $client = static::createClient([], [

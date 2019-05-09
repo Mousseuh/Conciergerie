@@ -8,6 +8,10 @@ use Symfony\Bundle\TwigBundle\Tests\TestCase;
 
 class UserTest extends TestCase
 {
+
+    /**
+     * test to create a user with false attributes
+     */
     public function testValidationFail()
     {
 
@@ -28,6 +32,9 @@ class UserTest extends TestCase
         $this->assertEquals($expected, $messages);
     }
 
+    /**
+     * test to create a user with valid attributes
+     */
     public function testValidationSuccess()
     {
         $user = new User();

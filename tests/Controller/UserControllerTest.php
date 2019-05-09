@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
+
+    /**
+     * test redirection on the User admin page
+     */
     public function testIndex()
     {
         $client = static::createClient([], [
@@ -20,6 +24,10 @@ class UserControllerTest extends WebTestCase
         $this->assertContains('Liste des utilisateurs', $crawler->filter('h1')->text());
     }
 
+
+    /**
+     * test redirection on the User creation page
+     */
     public function testNew()
     {
         $client = static::createClient([], [
