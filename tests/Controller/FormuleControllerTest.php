@@ -28,14 +28,14 @@ class FormuleControllerTest extends WebTestCase
     /**
      * test redirection on the Formule and Service choice page
      */
-    public function testFomuleService()
+    public function testFormuleService()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW'   => 'superadmin1',
         ]);
 
-        $crawler = $client->request('GET', '/userSpace');
+        $crawler = $client->request('GET', '/formule/userSpace');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('Découvrez les formules disponibles', $crawler->filter('h1')->text());
