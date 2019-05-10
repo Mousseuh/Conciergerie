@@ -24,12 +24,12 @@ class Formule
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="formules")
+     * @ORM\ManyToMany(targetEntity="App\Entity\UserFormule", mappedBy="formules")
      */
     private $users;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Service", inversedBy="users")
+     * @ORM\ManyToMany(targetEntity="App\Entity\FormuleService", mappedBy="formules")
      */
     private $services;
 
@@ -41,6 +41,7 @@ class Formule
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,4 +100,23 @@ class Formule
 
         return $this;
     }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        if ($this->services->contains($service)) {
+            $this->services->removeElement($service);
+        }
+
+        return $this;
+    }
+
 }

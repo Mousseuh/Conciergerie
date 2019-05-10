@@ -41,6 +41,11 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\EqualTo(propertyPath="password")
+     */
+    public $confirm_password;
+
+    /**
      * @var array
      *
      * @ORM\ManyToOne(targetEntity="Role", cascade={"persist"})
@@ -107,7 +112,7 @@ class User implements UserInterface
     }
 
     /**
-     * Retourne les rôles de l'user.
+     * Return user role.
      */
     public function getRoles(): array
     {
@@ -184,5 +189,21 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfirmPassword()
+    {
+        return $this->confirm_password;
+    }
+
+    /**
+     * @param mixed $confirm_password
+     */
+    public function setConfirmPassword($confirm_password): void
+    {
+        $this->confirm_password = $confirm_password;
     }
 }
