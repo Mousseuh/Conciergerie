@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, message="L'email indiqué est déjà utilisé")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -46,10 +46,6 @@ class User implements UserInterface
     public $confirm_password;
 
     /**
-     * @var array
-     *
-     * @ORM\ManyToOne(targetEntity="Role", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -205,5 +201,20 @@ class User implements UserInterface
     public function setConfirmPassword($confirm_password): void
     {
         $this->confirm_password = $confirm_password;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize(): string
+    {
+        return serialize([$this->id, $this->username, $this->password]);
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized): void
+    {
+        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

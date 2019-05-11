@@ -1,35 +1,41 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Formule : {{ formule.name }}</h1>
+    <div class="container">
+        <h1>Formule : {{ formule.name }}</h1>
 
-    <div class="container show-user">
-        <div class="row" >
-            <div class="">
-                <h3 class="display-3">{{ formule.name }}</h3>
-                <p class="mb-4">{{ formule.description }}</p>
+        <div class="show-user">
+            <div class="row">
+                <div class="">
+                    <h3 class="display-3">{{ formule.name }}</h3>
+                    <p class="mb-4">{{ formule.description }}</p>
 
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Services</th>
-                        <th>Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>blabla</td>
-                        <td> blabla</td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for service in formule.services %}
+                                <td>{{ service.name }}</td>
+                                <td>{{ service.description }}</td>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
 
-                <a class="btn btn-success center" href="#">Réserver</a>
+                    <p>
+                        <a class="btn btn-success center" href="{{ path('formule.reserved') }}">Réserver</a>
+                    </p>
 
+                </div>
             </div>
         </div>
-    </div>
 
-    <a href="{{ path('user_space') }}">Retour à la liste Services/Formules</a>
+        <a href="{{ path('user_space') }}">Retour à la liste Services/Formules</a>
+    </div>
 
 {% endblock %}

@@ -1,35 +1,37 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Liste des utilisateurs</h1>
+   <div class="container">
+       <h1>Liste des utilisateurs</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Pseudo</th>
-                <th>Rôle</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.email }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>
-                    <a  href="{{ path('user_edit', {'id': user.id}) }}"><i class="material-icons">create</i></a>
-                    {{ include('user/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+       <table class="table">
+           <thead>
+           <tr>
+               <th>Email</th>
+               <th>Pseudo</th>
+               <th>Rôle</th>
+               <th>Actions</th>
+           </tr>
+           </thead>
+           <tbody>
+           {% for user in users %}
+               <tr>
+                   <td>{{ user.email }}</td>
+                   <td>{{ user.username }}</td>
+                   <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                   <td>
+                       <a  href="{{ path('user_edit', {'id': user.id}) }}"><i class="material-icons">create</i></a>
+                       {{ include('user/_delete_form.html.twig') }}
+                   </td>
+               </tr>
+           {% else %}
+               <tr>g
+                   <td colspan="6">no records found</td>
+               </tr>
+           {% endfor %}
+           </tbody>
+       </table>
 
-    <a href="{{ path('user_new') }}"><i class="new material-icons">add</i></a>
+       <a href="{{ path('user_new') }}"><i class="new material-icons">add</i></a>
+   </div>
 {% endblock %}

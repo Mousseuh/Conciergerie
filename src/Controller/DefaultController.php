@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      *
      * @param Request $request
      *
      * @return Response
      */
-    public function homepage(Request $request)
+    public function index(Request $request): Response
     {
         return $this->render('index.html.twig');
     }

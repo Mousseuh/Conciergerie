@@ -23,10 +23,10 @@ class FormuleController extends AbstractController
      *
      * @return Response
      */
-    public function index(FormuleRepository $formuleRepository): Response
+    public function index(FormuleRepository $formules): Response
     {
         return $this->render('formule/index.html.twig', [
-            'formules' => $formuleRepository->findAll(),
+            'formules' => $formules->findAll(),
         ]);
     }
 
@@ -64,12 +64,13 @@ class FormuleController extends AbstractController
             $entityManager->persist($formule);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre formule a bien été ajouté');
             return $this->redirectToRoute('formule_index');
         }
 
         return $this->render('formule/new.html.twig', [
             'formule' => $formule,
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
         ]);
     }
 
@@ -131,5 +132,16 @@ class FormuleController extends AbstractController
         }
 
         return $this->redirectToRoute('formule_index');
+    }
+
+    /**
+     * @Route("/formule/reserved", name="formule.reserved")
+     *
+     * @return Response
+     */
+    public function reserved(): Response
+    {
+        // TODO To implement
+        return new Response('Package reserves here !');
     }
 }

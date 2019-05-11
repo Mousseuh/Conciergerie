@@ -1,16 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Serializable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  */
-class Service
+class Service implements \JsonSerializable
 {
     /**
      * @ORM\Id()
@@ -21,29 +21,33 @@ class Service
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
      */
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="UserService", mappedBy="services")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $users;
+    private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="FormuleService", mappedBy="services")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formule", mappedBy="services")
      */
     private $formules;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="services")
      */
-    private $description;
+    private $users;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
         $this->formules = new ArrayCollection();
+        $this->users = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -63,15 +67,55 @@ class Service
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     /**
-     * @return Collection|UserService[]
+     * @return Collection|Formule[]
+     */
+    public function getFormules(): Collection
+    {
+        return $this->formules;
+    }
+
+    public function addFormule(Formule $formule): self
+    {
+        if (!$this->packages->contains($formule)) {
+            $this->formules[] = $formule;
+            $formule->addService($this);
+        }
+
+        return $this;
+    }
+
+    public function removePackage(Formule $formule): self
+    {
+        if ($this->formules->contains($formule)) {
+            $this->formules->removeElement($formule);
+            $formule->removeService($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
      */
     public function getUsers(): Collection
     {
         return $this->users;
     }
 
-    public function addUser(UserService $user): self
+    public function addUser(User $user): self
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
@@ -81,7 +125,7 @@ class Service
         return $this;
     }
 
-    public function removeUser(UserService $user): self
+    public function removeUser(User $user): self
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
@@ -92,42 +136,10 @@ class Service
     }
 
     /**
-     * @return Collection|FormuleService[]
+     * {@inheritdoc}
      */
-    public function getFormules(): Collection
+    public function jsonSerialize(): string
     {
-        return $this->formules;
-    }
-
-    public function addFormule(FormuleService $formule): self
-    {
-        if (!$this->formules->contains($formule)) {
-            $this->formules[] = $formule;
-            $formule->addService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFormule(FormuleService $formule): self
-    {
-        if ($this->formules->contains($formule)) {
-            $this->formules->removeElement($formule);
-            $formule->removeService($this);
-        }
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
+        return $this->name;
     }
 }

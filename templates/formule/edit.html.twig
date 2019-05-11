@@ -1,14 +1,16 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
-    <h1>Edit Formule</h1>
+   <div class="container">
+       <h1>Edit Formule</h1>
 
-    <div class="container">
-        {{ include('formule/_form.html.twig', {'button_label': 'Update'}) }}
+       <div class="container">
+           {{ include('formule/_form.html.twig', {'button_label': 'Update'}) }}
 
-        <a href="{{ path('formule_index') }}">back to list</a>
+           <a href="{{ path('formule_index') }}">Retour à la liste</a>
 
-        {{ include('formule/_delete_form.html.twig') }}
-    </div>
+           {{ include('formule/_delete_form.html.twig') }}
+       </div>
+   </div>
 
 {% endblock %}

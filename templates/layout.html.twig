@@ -2,63 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <nav>
-        <div class="nav-wrapper cyan darken-4">
-            <a href="#" class="brand-logo right">Conciergerie <i class="material-icons right">nature_people</i> </a>
-            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul id="sidenav" class="left hide-on-med-and-down">
-                <li><a href="{{ path('home') }}">Accueil</a></li>
-                <li><a href="{{ path('user_space') }}">Nos services</a></li>
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li><a class='dropdown-trigger' href='#' data-target='dropdown1'>Gestion</a></li>
-                    <ul id="dropdown1" class='dropdown-content'>
-                        <li><a href="{{ path('user_index') }}" >Utilisateurs</a></li>
-                        <li class="divider" tabindex="-1"></li>
-                        <li><a href="{{ path('service_index') }}">Services</a></li>
-                        <li><a href="{{ path('formule_index') }}">Formules</a></li>
-                    </ul>
-                {% endif %}
-
-                {% if not app.user %}
-                <li><a href="{{ path('security_login') }}">Connexion</a></li>
-                {% else %}
-                <li><a href="{{ path('security_logout') }}">Déconnexion</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
-
-    <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-        <div class="background">
-            <img class="sidenavImage" alt="Picture Side Nav" src="{{ asset('build/conciergerie.jpg') }}">
-        </div>
-        </div></li>
-        {% if not app.user %}
-        {% else %}
-        <p>Vous êtes connecter en tant que : {{ app.user.username }}</p>
-        {% endif %}
-        <li><a href="{{ path('home') }}">Accueil</a></li>
-        <li><a href="{{ path('user_space') }}">Nos services</a></li>
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <li><a class='dropdown-trigger' href='#' data-target='dropdown2'>Gestion</a></li>
-            <ul id="dropdown2" class='dropdown-content'>
-                <li><a href="{{ path('user_index') }}" >Des utilisateurs</a></li>
-                <li class="divider" tabindex="-1"></li>
-                <li><a href="{{ path('service_index') }}">Services</a></li>
-                <li><a href="{{ path('formule_index') }}">Formules</a></li>
-            </ul>
-        {% endif %}
-
-        {% if not app.user %}
-            <li><a href="{{ path('security_login') }}">Connexion</a></li>
-        {% else %}
-            <li><a href="{{ path('security_logout') }}">Déconnexion</a></li>
-        {% endif %}
-    </ul>
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -66,28 +9,86 @@
     {% endblock %}
 </head>
 <body>
-{% block body %}
-{% endblock %}
+<nav>
+    <div class="nav-wrapper cyan darken-4">
+        <a href="#" class="brand-logo right">Conciergerie <i class="material-icons right">nature_people</i> </a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="sidenav" class="left hide-on-med-and-down">
+            <li><a href="{{ path('home') }}">Accueil</a></li>
+            <li><a href="{{ path('user_space') }}">Nos services</a></li>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <li><a class='dropdown-trigger' href='#' data-target='dropdown1'>Gestion</a></li>
+                <ul id="dropdown1" class='dropdown-content'>
+                    <li><a href="{{ path('user_index') }}" >Utilisateurs</a></li>
+                    <li class="divider" tabindex="-1"></li>
+                    <li><a href="{{ path('service_index') }}">Services</a></li>
+                    <li><a href="{{ path('formule_index') }}">Formules</a></li>
+                </ul>
+            {% endif %}
+
+            {% if not app.user %}
+                <li><a href="{{ path('security_login') }}">Connexion</a></li>
+            {% else %}
+                <li><a href="{{ path('security_logout') }}">Déconnexion</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+            <div class="background">
+                <img class="sidenavImage" alt="Picture Side Nav" src="{{ asset('build/conciergerie.jpg') }}">
+            </div>
+        </div></li>
+    {% if not app.user %}
+    {% else %}
+        <p>Vous êtes connecter en tant que : {{ app.user.username }}</p>
+    {% endif %}
+    <li><a href="{{ path('home') }}">Accueil</a></li>
+    <li><a href="{{ path('user_space') }}">Nos services</a></li>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <li><a class='dropdown-trigger' href='#' data-target='dropdown2'>Gestion</a></li>
+        <ul id="dropdown2" class='dropdown-content'>
+            <li><a href="{{ path('user_index') }}" >Des utilisateurs</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a href="{{ path('service_index') }}">Services</a></li>
+            <li><a href="{{ path('formule_index') }}">Formules</a></li>
+        </ul>
+    {% endif %}
+
+    {% if not app.user %}
+        <li><a href="{{ path('security_login') }}">Connexion</a></li>
+    {% else %}
+        <li><a href="{{ path('security_logout') }}">Déconnexion</a></li>
+    {% endif %}
+</ul>
+{% block body %}{% endblock %}
+
 {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             let elems = document.querySelectorAll('.sidenav');
             let instances = M.Sidenav.init(elems);
         });
-    </script>
-    <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             let elems = document.querySelectorAll('.dropdown-trigger');
             let instances = M.Dropdown.init(elems);
         });
-    </script>
-    <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.slider');
             var instances = M.Slider.init(elems, {fullWidth: true}, {indicators: true});
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, {
+                isMultiple: true
+            });
+        });
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="{{ asset('build/app.css') }}"></script>
 {% endblock %}
 </body>
