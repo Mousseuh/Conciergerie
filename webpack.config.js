@@ -17,7 +17,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addStyleEntry('app/css', './assets/css/app.css')
+    .addStyleEntry('app/css', './assets/css/app.scss')
 
     .copyFiles({
         from: './assets/images',
@@ -48,7 +48,7 @@ Encore
     .enableVersioning(Encore.isProduction())
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

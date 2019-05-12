@@ -1,0 +1,72 @@
+body {
+  background-color: #ebebeb;
+}
+
+.containers{
+  text-align: center;
+}
+
+.btn-success{
+  background-color: #00bf00;
+}
+
+.new{
+  border-radius: 5px;
+  background-color: #001342;
+  color: #ffffff;
+}
+
+.info{
+  color: #ffffff;
+}
+
+.w3-container{
+  display: inline-block;
+  width: 42%;
+  background: #5e9191;
+  border-radius: 10px;
+  margin: 0 0 15px 15px;
+}
+
+.show-user{
+  text-align: center;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.user-view{
+  padding: 300px 0 0 !important;
+}
+#dropdown1{
+  top: 64px !important;
+}
+#dropdown2{
+  left: 130px !important;
+}
+.carousel{
+  height: 500px !important;
+  width: auto !important;
+}
+
+table{
+  width: 80%;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+th {
+  background-color: #66afa6;
+  color: white;
+}
+
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+}
+
+@import "form";

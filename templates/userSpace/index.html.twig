@@ -3,50 +3,39 @@
 {% block body %}
 
     <div class="container">
-        {#<div class="show-user">
-            <div class="row">
-                <h1>Découvrez les formules disponibles</h1>
-
-
-                    <div class="containers">
-                        <div class="w3-container">
-                            <h3>{{ formule.name }}</h3>
-                            <a href="{{ path('formule_show', {'id': formule.id}) }}"><i class="info material-icons">info_outline</i></a>
-                        </div>
-                    </div>
-            </div>
-        </div>#}
 
         <div class="row">
+            <h1>Découvrez les formules disponibles</h1>
+            {% for formule in formules %}
             <div class="col s12 m6">
-                {% for formule in formules %}
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">{{ formule.name }}</span>
                         <p>{{ formule.description }}</p>
                     </div>
                     <div class="card-action">
-                        <a href="{{ path('formule_show', {'id': formule.id}) }}">Voir la formule</a>
+                        <a href="{{ path('formule_show', {'id': formule.id}) }}"><i class="info material-icons">info_outline</i> Voir la formule</a>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
 
-        <div class="show-user">
-            <div class="row">
-                <h1>Ou les services en individuels</h1>
-
-                {% for service in services %}
-                    <div class="containers">
-                        <div class="w3-container">
-                            <h3>{{ service.name }}</h3>
-                            <a href="{{ path('service_show', {'id': service.id}) }}"><i class="info material-icons">info_outline</i></a>
+        <div class="row">
+            <h1>Ou les services en individuels</h1>
+            {% for service in services %}
+            <div class="col s12 m6">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ service.name }}</span>
+                            <p>{{ service.description }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ path('service_show', {'id': service.id}) }}"><i class="info material-icons">info_outline</i> Voir le service</a>
                         </div>
                     </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-    </div>
 
 {% endblock %}
