@@ -18,12 +18,12 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% for service in formule.services %}
                         <tr>
-                            {% for service in formule.services %}
                                 <td>{{ service.name }}</td>
                                 <td>{{ service.description }}</td>
-                            {% endfor %}
                         </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
 
