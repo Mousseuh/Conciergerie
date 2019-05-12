@@ -24,6 +24,7 @@ class FormuleType extends AbstractType
                 'class'        => Service::class,
                 'choice_label' => 'name',
                 'multiple'     => true,
+                'required'     => false
             ])
         ;
     }

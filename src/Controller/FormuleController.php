@@ -6,6 +6,7 @@ use App\Entity\Formule;
 use App\Form\FormuleType;
 use App\Repository\FormuleRepository;
 use App\Repository\ServiceRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -104,6 +105,10 @@ class FormuleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                sprintf('La formule %s a bien été mise à jour.', $formule->getName())
+            );
             return $this->redirectToRoute('formule_index', [
                 'id' => $formule->getId(),
             ]);
@@ -111,7 +116,7 @@ class FormuleController extends AbstractController
 
         return $this->render('formule/edit.html.twig', [
             'formule' => $formule,
-            'form' => $form->createView(),
+            'form'    => $form->createView(),
         ]);
     }
 
@@ -123,10 +128,9 @@ class FormuleController extends AbstractController
      *
      * @return Response
      */
-    public function delete(Request $request, Formule $formule): Response
+    public function delete(Request $request, Formule $formule, ObjectManager $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$formule->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($formule);
             $entityManager->flush();
         }
@@ -135,13 +139,13 @@ class FormuleController extends AbstractController
     }
 
     /**
-     * @Route("/formule/reserved", name="formule.reserved")
+     * @Route("/reserved", name="formule.reserved")
      *
      * @return Response
      */
     public function reserved(): Response
     {
         // TODO To implement
-        return new Response('Package reserves here !');
+        return new Response('Package reserved here !');
     }
 }
